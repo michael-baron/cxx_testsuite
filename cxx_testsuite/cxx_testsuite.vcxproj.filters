@@ -72,8 +72,5 @@
     <ClCompile Include="uninitialized_variable_001.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="uninitialized_variable_002.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

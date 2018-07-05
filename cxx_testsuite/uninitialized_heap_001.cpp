@@ -17,7 +17,7 @@ void foo(S1* ptr) {
 	int k = ptr ? ptr->x : -1;
 }
 
-int main() {
+int main_test001() {
 	S2* ps = (S2*)malloc(sizeof(S2));
 	if (ps != NULL) {
 		foo(ps->ptr); //DEFECT

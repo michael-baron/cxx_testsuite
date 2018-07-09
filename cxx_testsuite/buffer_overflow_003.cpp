@@ -17,7 +17,7 @@ void buffer_overflow_003_N(int x)
 	}
 }
 
-void buffer_overflow_003(int x) {
+void buffer_overflow_003() {
 	buffer_overflow_003_P(15); //DEFECT
 	buffer_overflow_003_N(15);
 }

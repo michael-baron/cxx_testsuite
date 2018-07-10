@@ -26,3 +26,10 @@ void freeing_non_heap_memory_002_free(int * memory)
 {
 	delete[] memory;
 }
+
+int *xmalloc() {
+	if (g_localSensorData) {
+		return &g_localSensorData;
+	}
+	return 0;
+}

@@ -3,7 +3,7 @@ Emenda Ltd, 02/05/2018
 Division By Zero
 */
 
-int divions_by_zero_002_P() {
+int division_by_zero_002_P() {
 	int sum = 0;
 	for (int i = -10; i < 10; ++i) {
 		sum += 3628800 / i; //DEFECT
@@ -11,7 +11,7 @@ int divions_by_zero_002_P() {
 	return sum;
 }
 
-int divions_by_zero_002_N() {
+int division_by_zero_002_N() {
 	int sum = 0;
 	for (int i = -10; i < 10; ++i) {
 		if (i != 0) {

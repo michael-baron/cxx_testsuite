@@ -5,7 +5,7 @@ Division By Zero
 
 #include "functions_001.h"
 
-int divions_by_zero_001_P() {
+int division_by_zero_001_P() {
 	int size = 0;
 	return compute_mean(0, size); //DEFECT
 }

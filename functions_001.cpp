@@ -14,10 +14,10 @@ int * returnSensorData(int sensorNum) {
 	}
 }
 
-int compute_mean(int array[], size_t size)
+int compute_mean(int array[], int size)
 {
 	int sum = 0;
-	for (size_t i = 0; i < size; ++i) {
+	for (int i = 0; i < size; ++i) {
 		sum += array[i];
 	}
 	return sum / size;

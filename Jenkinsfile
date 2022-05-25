@@ -76,51 +76,48 @@ pipeline {
 				sh '''
                     git diff --name-only --diff-filter=d origin/master > diff_file_list.txt
                 '''
-				def output_list = readFile("output.txt")
-				if (output_list.size() != 0) {
-					echo "Performing CI Analysis"
-					klocworkIncremental(
+				echo "Performing CI Analysis"
+				klocworkIncremental(
+				  [
+					additionalOpts: '', 
+					buildSpec: 'kwinject.out', 
+					cleanupProject: false, 
+					diffAnalysisConfig: [
+						diffFileList: 'diff_file_list.txt', 
+						diffType: 'manual', 
+						gitPreviousCommit: ""
+					], 
+					incrementalAnalysis: true, 
+					projectDir: '', 
+					reportFile: 'kw_results.xml',
+					ciTool: "kwciagent"
+				  ]
+				)
+				echo "Performing Quality Gateway Checks"
+				klocworkQualityGateway(
+				  [
+					enableCiGateway: true, 
+					gatewayCiConfigs: [
 					  [
-						additionalOpts: '', 
-						buildSpec: 'kwinject.out', 
-						cleanupProject: false, 
-						diffAnalysisConfig: [
-							diffFileList: 'diff_file_list.txt', 
-							diffType: 'manual', 
-							gitPreviousCommit: ""
+						enableHTMLReporting: true, 
+						enabledStatuses: [
+							analyze: true, 
+							defer: true, 
+							filter: true, 
+							fix: true, 
+							fixInLaterRelease: true, 
+							fixInNextRelease: true, 
+							ignore: true, 
+							notAProblem: true
 						], 
-						incrementalAnalysis: true, 
-						projectDir: '', 
-						reportFile: 'kw_results.xml',
-						ciTool: "kwciagent"
+						failUnstable: true, 
+						name: 'No New Issues (Any Status)', 
+						reportFile: 'kw_results.xml', 
+						threshold: '1'
 					  ]
-					)
-					echo "Performing Quality Gateway Checks"
-					klocworkQualityGateway(
-					  [
-						enableCiGateway: true, 
-						gatewayCiConfigs: [
-						  [
-							enableHTMLReporting: true, 
-							enabledStatuses: [
-								analyze: true, 
-								defer: true, 
-								filter: true, 
-								fix: true, 
-								fixInLaterRelease: true, 
-								fixInNextRelease: true, 
-								ignore: true, 
-								notAProblem: true
-							], 
-							failUnstable: true, 
-							name: 'No New Issues (Any Status)', 
-							reportFile: 'kw_results.xml', 
-							threshold: '1'
-						  ]
-						]
-					  ]
-					)
-				}
+					]
+				  ]
+				)
 			}
 		}
     }

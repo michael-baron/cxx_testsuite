@@ -75,7 +75,7 @@ pipeline {
 			}
 			steps {
 				sh '''
-                    git diff --name-only --diff-filter=d origin/master > diff_file_list.txt
+                    git diff --name-only --diff-filter=d master > diff_file_list.txt
                 '''
 				echo "Performing CI Analysis"
 				klocworkIncremental(

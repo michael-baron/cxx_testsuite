@@ -85,7 +85,7 @@ pipeline {
 				    cleanupProject: false, 
 				    differentialAnalysisConfig: [
 				        diffFileList: 'diff_file_list.txt', 
-				        diffType: 'git', 
+				        diffType: 'manual', 
 				        gitPreviousCommit: ''
 				    ], 
 				    incrementalAnalysis: true, 

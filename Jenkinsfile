@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'built-in node'
+        label 'master'
     }
     environment {
         KLOCWORK_BUILDSPEC = "kwinject.out"

@@ -78,45 +78,36 @@ pipeline {
                 '''
 				echo "Performing CI Analysis"
 				klocworkIncremental(
-				  [
-					additionalOpts: '', 
-					buildSpec: 'kwinject.out', 
-					cleanupProject: false, 
-					diffAnalysisConfig: [
-						diffFileList: 'diff_file_list.txt', 
-						diffType: 'manual', 
-						gitPreviousCommit: ""
-					], 
-					incrementalAnalysis: true, 
-					projectDir: '', 
-					reportFile: 'kw_results.xml',
-					ciTool: "kwciagent"
-				  ]
+				    [
+				    additionalOpts: '', 
+				    buildSpec: 'kwinject.out', 
+				    cleanupProject: false, 
+				    differentialAnalysisConfig: [
+				        diffFileList: 'diff_file_list.txt', 
+				        diffType: 'git', 
+				        gitPreviousCommit: ''
+				    ], 
+				    incrementalAnalysis: true, 
+				    projectDir: '', 
+				    reportFile: 'kw_results.xml'
+				    ]
 				)
 				echo "Performing Quality Gateway Checks"
-				klocworkQualityGateway(
-				  [
-					enableCiGateway: true, 
-					gatewayCiConfigs: [
-					  [
-						enableHTMLReporting: true, 
-						enabledStatuses: [
-							analyze: true, 
-							defer: true, 
-							filter: true, 
-							fix: true, 
-							fixInLaterRelease: true, 
-							fixInNextRelease: true, 
-							ignore: true, 
-							notAProblem: true
-						], 
-						failUnstable: true, 
-						name: 'No New Issues (Any Status)', 
-						reportFile: 'kw_results.xml', 
-						threshold: '1'
-					  ]
-					]
-				  ]
+				klocworkFailureCondition(
+				    [
+				        enableCiFailureCondition: true, 
+				        failureConditionCiConfigs: [
+				            [
+				                diffFileList: 'diff_file_list.txt', 
+				                enableHTMLReporting: true, 
+				                failUnstable: true, 
+				                name: 'New Issues', 
+				                reportFile: 'kw_results.xml', 
+				                threshold: '1', 
+				                withDiffList: true
+				            ]
+				        ]
+				    ]
 				)
 			}
 		}

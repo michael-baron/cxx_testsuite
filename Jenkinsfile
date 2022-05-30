@@ -50,21 +50,7 @@ pipeline {
                 ]
                 )
                 echo "Performing Quality Gateway Checks"
-                klocworkQualityGateway(
-                [
-                    enableServerGateway: true, 
-                    gatewayServerConfigs: [
-                    [
-                        conditionName: 'Open High Severity Issues', 
-                        enableHTMLReporting: false, 
-                        jobResult: 'unstable', 
-                        query: 'status:+Analyze,+Fix severity:1,2', 
-                        stopBuild: false, 
-                        threshold: '1'
-                    ]
-                    ]
-                ]
-                )
+                klocworkFailureCondition([enableServerFailureCondition: true, failureConditionCiConfigs: [[diffFileList: 'diff_file_list.txt', enableHTMLReporting: true, failUnstable: true, name: 'New Issues', reportFile: 'kw_results.xml', threshold: '1', withDiffList: true]], failureConditionServerConfigs: [[conditionName: 'New High Severity', enableHTMLReporting: true, jobResult: 'unstable', query: 'state:+New status:Analyze severity:1,2', stopBuild: false, threshold: '1']]])
             }
         }
 		stage('Diff static code analysis'){
@@ -85,7 +71,7 @@ pipeline {
 				    cleanupProject: false, 
 				    differentialAnalysisConfig: [
 				        diffFileList: 'diff_file_list.txt', 
-				        diffType: 'git', 
+				        diffType: 'manual', 
 				        gitPreviousCommit: ''
 				    ], 
 				    incrementalAnalysis: true, 

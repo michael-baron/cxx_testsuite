@@ -8,6 +8,7 @@ pipeline {
         KLOCWORK_URL = 'http://localhost:8082'
         KLOCWORK_PROJECT = "cxx_testsuite"
         KLOCWORK_LTOKEN = "/opt/klocwork/ltoken"
+	PATH = "/opt/klocwork/server/bin:/opt/klocwork/kwciagent/bin:${env.PATH}"
     }
     stages {
         stage('Full, clean compile & link') {

@@ -28,9 +28,6 @@ int main() {
 	division_by_zero_002_P();
 	division_by_zero_002_N();
 
-    // freeing_non_heap_memory_001.cpp
-	freeing_non_heap_memory_001_P();
-
     // freeing_non_heap_memory_002.cpp
 	freeing_non_heap_memory_002_P();
 

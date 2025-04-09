@@ -20,6 +20,6 @@ void buffer_overflow_001_N()
 void buffer_overflow_001_P1()
 {
     char fixed_buf[10];
-    snprintf(fixed_buf, sizeof(fixed_buf), "Very long format string\n");
-    //sprintf(fixed_buf, "Very long format string\n"); //DEFECT
+    //snprintf(fixed_buf, sizeof(fixed_buf), "Very long format string\n");
+    sprintf(fixed_buf, "Very long format string\n"); //DEFECT
 }

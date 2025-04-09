@@ -22,6 +22,6 @@ void buffer_overflow_002_N()
 }
 
 void new_test(){
-    int a[10];
+	int a[10];
 	a[9] = 1;
 }

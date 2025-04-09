@@ -23,10 +23,5 @@ void buffer_overflow_002_N()
 
 void new_test(){
     int a[10];
-	a[9] = 1;
-}
-
-void new_test2(){
-	int a[10];
-	a[9] = 1;
+        a[9] = 1;
 }

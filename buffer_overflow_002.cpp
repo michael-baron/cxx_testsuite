@@ -26,7 +26,7 @@ void new_test(){
 	a[9] = 1;
 }
 
-void new_test(){
+void new_test2(){
 	int a[10];
 	a[9] = 1;
 }

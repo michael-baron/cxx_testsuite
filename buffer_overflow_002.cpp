@@ -25,3 +25,8 @@ void new_test(){
     int a[10];
 	a[9] = 1;
 }
+
+void new_test(){
+	int a[10];
+	a[9] = 1;
+}

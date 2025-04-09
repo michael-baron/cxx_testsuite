@@ -20,3 +20,8 @@ void buffer_overflow_002_N()
 		((int*)a)[i] = i;
 	}
 }
+
+void new_test(){
+	int a[10];
+	a[10] = 1;
+}
